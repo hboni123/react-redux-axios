@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import SignupForm from './component/SignupForm';
+import LoginForm from './component/LoginForm';
+import Dashboard from './component/Dashboard'; // Ensure this file exists
+import PokemonDetail from './component/PokemonDetail'; // Import the new component
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App = () => {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Navigate to="/signup" />} /> 
+                <Route path="/signup" element={<SignupForm />} />
+                <Route path="/login" element={<LoginForm />} />
+                <Route path="/auth/:username/dashboard" element={<Dashboard />} />
+                <Route path="/auth/:username/dashboard/:pokemonName" element={<PokemonDetail />} /> {/* Add route for Pokémon detail */}
+                {/* Add other routes here */}
+            </Routes>
+        </Router>
+    );
+};
 
 export default App;

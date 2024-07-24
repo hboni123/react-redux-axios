@@ -1,0 +1,63 @@
+.pokemon-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.pokemon-detail-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    background-color: #fff;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.pokemon-detail-image {
+    width: 250px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.pokemon-detail-info {
+    padding: 15px;
+}
+
+.pokemon-detail-name {
+    font-size: 28px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.pokemon-detail-text {
+    font-size: 18px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.pokemon-detail-back-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pokemon-detail-back-button:hover {
+    background-color: #0056b3;
+}
