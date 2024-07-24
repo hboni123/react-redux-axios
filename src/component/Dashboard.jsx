@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import Card from './Card'; // Ensure this path is correct
+import Card from './Card'; 
 import '../styles/Dashboard.css';
 
 const Dashboard = () => {
@@ -13,11 +13,13 @@ const Dashboard = () => {
     const [prevUrl, setPrevUrl] = useState(null);
     const navigate = useNavigate();
 
+    // It makes sure that we only the url data when url changes
     useEffect(() => {
         const fetchPokemonData = async (url) => {
             try {
                 const response = await axios.get(url);
                 setPokemonData(response.data.results);
+                //console.log(pokemonData);
                 setNextUrl(response.data.next);
                 setPrevUrl(response.data.previous);
             } catch (err) {
@@ -30,6 +32,7 @@ const Dashboard = () => {
         fetchPokemonData('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0');
     }, []);
 
+    // set PokemonData to next data
     const handleNext = () => {
         if (nextUrl) {
             setLoading(true);
@@ -37,6 +40,7 @@ const Dashboard = () => {
         }
     };
 
+    // set PokemonData to previous data
     const handlePrevious = () => {
         if (prevUrl) {
             setLoading(true);
@@ -48,6 +52,7 @@ const Dashboard = () => {
         navigate('/login');
     };
 
+    // Fuction to get next 20 or prev 20 pokimon url data
     const fetchPokemonData = async (url) => {
         try {
             const response = await axios.get(url);
@@ -66,24 +71,27 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard">
+            {/*Navbar */}
             <nav className="navbar">
                 <div className="navbar-content">
                     <span className="welcome-message">Welcome, {username}</span>
-                    <button className="logout-button" onClick={handleLogout}>Logout</button>
+                    <button className="logout-button" onClick={handleLogout}>Logout</button> {/*Logout button */}
                 </div>
             </nav>
             <h1>Pokémon Dashboard</h1>
+            {/*Loads pokemon data */}
             <div className="pokemon-list">
                 {pokemonData.map(pokemon => (
                     <Card
                         key={pokemon.name}
                         name={pokemon.name}
-                        image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.url.split('/')[6]}.png`} // Update image URL as needed
-                        height={0} // Placeholder, not used
-                        weight={0} // Placeholder, not used
+                        url = {pokemon.url}
+                        //height={pokemon.height} 
+                        //weight={pokemon.weight} 
                     />
                 ))}
             </div>
+            {/* Next and previous button*/}
             <div className="pagination-buttons">
                 <button
                     className="pagination-button"

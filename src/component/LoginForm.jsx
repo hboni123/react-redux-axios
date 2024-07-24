@@ -1,14 +1,16 @@
 import React from 'react';
-import {  useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom'; 
 import '../styles/LoginForm.css';
 
 const LoginForm = () => {
     const navigate = useNavigate();
+    // Gets user data
     const user = useSelector((state) => state.user);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // Gets form data
         const username = e.target.username.value;
         const password = e.target.password.value;
 
@@ -35,6 +37,7 @@ const LoginForm = () => {
                 </div>
                 <button type="submit">Login</button>
             </form>
+            <p>Need an account? <Link to="/signup">Sign Up Here</Link></p> {/* Link to the signup page */}
         </div>
     );
 };

@@ -1,8 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link from 'react-router-dom'
 import { setUserData } from '../redux/userSlice';
-import { useNavigate } from 'react-router-dom';
-
 import '../styles/SignupForm.css';
 
 const SignupForm = () => {
@@ -14,10 +13,10 @@ const SignupForm = () => {
         const username = e.target.username.value;
         const password = e.target.password.value;
 
-        // Dispatch action to store user data in Redux
+        // Store user data in Redux
         dispatch(setUserData({ username, password }));
 
-        // Optionally, clear the form or handle further actions
+        // Redirects to login page
         navigate('/login');
     };
 
@@ -35,6 +34,7 @@ const SignupForm = () => {
                 </div>
                 <button type="submit">Sign Up</button>
             </form>
+            <p>Already have an account? <Link to="/login">Login Here</Link></p> {/* redirects to login */}
         </div>
     );
 };

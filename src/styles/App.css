@@ -1,3 +1,22 @@
+/* Ensure body and html occupy the full viewport */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Optional: prevent scrolling outside of the app */
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Ensure that any additional components (e.g., header, main content) fill the remaining space */
+.app-container {
+  flex: 1; /* Ensures that it fills the available space within #root */
+}
+
 .App {
   text-align: center;
 }
