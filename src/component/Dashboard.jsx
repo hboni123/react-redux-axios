@@ -4,7 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Card from './Card'; 
 import '../styles/Dashboard.css';
 
-const Dashboard = ({isLoggedOut}) => {
+const url = process.env.REACT_APP_PUBLIC_URL;
+
+const Dashboard = ({isLoggedOut, apiURL}) => {
     const { username } = useParams();
     const [pokemonData, setPokemonData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -13,8 +15,10 @@ const Dashboard = ({isLoggedOut}) => {
     const [prevUrl, setPrevUrl] = useState(null);
     const navigate = useNavigate();
 
+
     // It makes sure that we only the url data when url changes
     useEffect(() => {
+
         const fetchPokemonData = async (url) => {
             try {
                 const response = await axios.get(url);
@@ -28,8 +32,15 @@ const Dashboard = ({isLoggedOut}) => {
                 setLoading(false);
             }
         };
-
-        fetchPokemonData('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0');
+        //`${apiUrl}?limit=${limit}&offset=${(currentPage - 1) * limit}`);
+        //https://pokeapi.co/api/v2/pokemon?limit=20&offset=0
+        if (url) {
+            fetchPokemonData(url);
+        } else {
+            setError(new Error('API URL is not defined'));
+            setLoading(false);
+        }
+        //fetchPokemonData('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0');
     }, []);
 
     // set PokemonData to next data
@@ -68,7 +79,10 @@ const Dashboard = ({isLoggedOut}) => {
     };
 
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error fetching data: {error.message}</p>;
+    if (error) 
+    return (
+        <p>Error fetching data: {error.message}</p>
+    )
 
     return (
         <div className="dashboard">

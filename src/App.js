@@ -6,6 +6,8 @@ import LoginForm from './component/LoginForm';
 import Dashboard from './component/Dashboard';
 import PokemonDetail from './component/PokemonDetail'; 
 import { useState } from 'react';
+// import dotenv from 'dotenv'
+// dotenv.config()
 
 const App = () => {
     const [isAuthenticated, setisAuthenticated] = useState(false)
@@ -25,7 +27,7 @@ const App = () => {
                     <LoginForm isLoggedIn={isLoggedIn} />} 
                     />
                 <Route path="/auth/:username/dashboard" element={
-                    isAuthenticated ? <Dashboard isLoggedOut={isLoggedOut}/> : <Navigate to="/signup" />} />
+                    isAuthenticated ? <Dashboard isLoggedOut={isLoggedOut} /> : <Navigate to="/signup" />} />
                 <Route path="/auth/:username/dashboard/:pokemonName" element={
                     isAuthenticated ? <PokemonDetail /> : <Navigate to="/signup" />} />
             </Routes>
