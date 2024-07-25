@@ -15,6 +15,7 @@ const Dashboard = ({isLoggedOut, apiURL}) => {
     const [prevUrl, setPrevUrl] = useState(null);
     const navigate = useNavigate();
 
+    //console.log(url) //debugging env variable
 
     // It makes sure that we only the url data when url changes
     useEffect(() => {

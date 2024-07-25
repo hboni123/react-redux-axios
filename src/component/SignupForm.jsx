@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom'; // Import Link from 'react-router-dom'
 import { setUserData } from '../redux/userSlice';
 import '../styles/SignupForm.css';
@@ -7,6 +7,8 @@ import '../styles/SignupForm.css';
 const SignupForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const user = useSelector((state) => state.user);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,10 +16,18 @@ const SignupForm = () => {
         const password = e.target.password.value;
 
         // Store user data in Redux
-        dispatch(setUserData({ username, password }));
+        //const userExists = users.some(user => user.username === username);
 
-        // Redirects to login page
-        navigate('/login');
+        if (username === user.username && password === user.password) {
+            alert('Username already exists. Please choose a different username.');
+        } else {
+            // Store user data in Redux
+            dispatch(setUserData({ username, password }));
+
+            // Redirect to login page
+            navigate('/login');
+        }
+
     };
 
     return (
