@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Card from './Card'; 
 import '../styles/Dashboard.css';
 
-const Dashboard = () => {
+const Dashboard = ({isLoggedOut}) => {
     const { username } = useParams();
     const [pokemonData, setPokemonData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -49,6 +49,7 @@ const Dashboard = () => {
     };
 
     const handleLogout = () => {
+        isLoggedOut();
         navigate('/login');
     };
 

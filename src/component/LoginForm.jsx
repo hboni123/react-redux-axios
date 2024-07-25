@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom'; 
 import '../styles/LoginForm.css';
 
-const LoginForm = () => {
+const LoginForm = ({isLoggedIn}) => {
     const navigate = useNavigate();
     // Gets user data
     const user = useSelector((state) => state.user);
@@ -17,6 +17,7 @@ const LoginForm = () => {
         // Check if the entered username and password match the stored data
         if (username === user.username && password === user.password) {
             // Redirect to the dashboard if authentication is successful
+            isLoggedIn();
             navigate(`/auth/${username}/dashboard`);
         } else {
             alert('Invalid username or password');
