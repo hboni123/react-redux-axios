@@ -84,6 +84,7 @@ const Dashboard = () => {
                 {pokemonData.map(pokemon => (
                     <Card
                         key={pokemon.name}
+                        username = {username}
                         name={pokemon.name}
                         url = {pokemon.url}
                         //height={pokemon.height} 

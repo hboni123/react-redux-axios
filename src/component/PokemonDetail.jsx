@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/PokemonDetail.css';
 
 const PokemonDetail = () => {
-    const { pokemonName } = useParams(); 
+    const { pokemonName} = useParams(); 
     const [pokemon, setPokemon] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

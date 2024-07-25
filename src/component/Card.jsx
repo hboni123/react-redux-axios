@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Card.css';
 
-const Card = ({ name, url }) => {
+const Card = ({ username, name, url }) => {
     const navigate = useNavigate();
     const [pokemonData, setPokemonData] = useState(null);
 
@@ -24,7 +24,7 @@ const Card = ({ name, url }) => {
     }, [url]);  // Fetch data when `url` changes
 
     const handleClick = () => {
-        navigate(`/auth/username/dashboard/${name}`);
+        navigate(`/auth/${username}/dashboard/${name}`);
     };
 
     // Function to capitalize the first letter of a string
